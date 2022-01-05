@@ -1,0 +1,5 @@
+* WxApp
+A simple C# program utilizing Nat’l Weather Service and Windows
+runtime APIs to find user location and display the applicable
+weather forecast and alerts.  WinForms, C#, .NET 5.0 underneath.
+Created for a user interface design course.
