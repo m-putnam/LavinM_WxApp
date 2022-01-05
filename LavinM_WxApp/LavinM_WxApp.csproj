@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows10.0.17763.0</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <Authors>Matthew Lavin</Authors>
+    <Company>Keene State College</Company>
+    <Product>PowerWX</Product>
+    <Description>A weather app which utilizes the WinRT geolocation API and National Weather Service weather API to pull forecast data and active weather warnings for either a specified reporting location or the user's location as reported by Windows.</Description>
+  </PropertyGroup>
+</Project>
