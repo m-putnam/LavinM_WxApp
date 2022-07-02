@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -250,20 +251,18 @@ namespace LavinM_WxApp
         point object from the NWS web API. */
         private async static Task<WxPoint.Rootobject> GetPoint(double lat, double lon)
         {
-            WxPoint.Rootobject rtPt = null;
             string pointIdent = $"points/{lat:0.0000},{lon:0.0000}";
-            /* Filler default point for testing
-            string pointIdent = "points/47.95,-97.18";
-            */
-            try
+            using (var rtResponse = await client.GetAsync(pointIdent))
             {
-                rtPt = await client.GetFromJsonAsync<WxPoint.Rootobject>(pointIdent);
+                /* Temporary workaround for issue reported 5/10/2022, repeat request if endpoint returns 500. */
+                if ((int) rtResponse.StatusCode == 500)
+                    await client.GetAsync(pointIdent);
+                //rtPt = await client.GetFromJsonAsync<WxPoint.Rootobject>(pointIdent);
+                using (var ptStream = rtResponse.Content.ReadAsStream())
+                {
+                    return await JsonSerializer.DeserializeAsync<WxPoint.Rootobject>(ptStream);
+                }
             }
-            catch (Exception err)
-            {
-                BoxedError(err.Message);
-            }
-            return rtPt;
         }
 
         /* Start off our geolocation logic using WinRT API, then send to
