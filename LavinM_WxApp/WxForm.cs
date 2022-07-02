@@ -54,6 +54,7 @@ namespace LavinM_WxApp
                 MediaTypeWithQualityHeaderValue("application/geo+json"));
         }
 
+        /* Get latest observation of given station from web API. */
         private async Task<Observation.Rootobject> GetObservation(string station)
         {
             Observation.Rootobject o = null;
@@ -68,6 +69,7 @@ namespace LavinM_WxApp
             return o;
         }
 
+        /* Get info on WX station from API */
         private async Task<Station.Rootobject> GetStation(string station)
         {
             Station.Rootobject s = null;
@@ -221,7 +223,7 @@ namespace LavinM_WxApp
             }
         }
 
-        /* Get alerts for the given zone ID */
+        /* Get zone alerts for the given zone ID */
         private static async void GetZoneAlerts(string zoneId)
         {
             string alertLoc = zoneToAlertLoc(zoneId);
@@ -250,7 +252,7 @@ namespace LavinM_WxApp
         {
             WxPoint.Rootobject rtPt = null;
             string pointIdent = $"points/{lat:0.0000},{lon:0.0000}";
-            /*
+            /* Filler default point for testing
             string pointIdent = "points/47.95,-97.18";
             */
             try
