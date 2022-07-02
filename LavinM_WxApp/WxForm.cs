@@ -82,6 +82,8 @@ namespace LavinM_WxApp
             return s;
         }
 
+        /* Get our specified station from the text box, otherwise
+        defaulting to Keene. */
         private async void ButtonRetrieve_Click(object sender, EventArgs e)
         {
             string station;

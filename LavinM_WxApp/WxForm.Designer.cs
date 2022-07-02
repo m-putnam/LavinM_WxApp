@@ -135,6 +135,7 @@ namespace LavinM_WxApp
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.BoxForecast);
             this.Controls.Add(this.groupBoxInput);
+            this.DoubleBuffered = true;
             this.MaximizeBox = false;
             this.Name = "WxForm";
             this.Text = "PowerWX";
