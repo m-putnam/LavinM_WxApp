@@ -247,8 +247,11 @@ namespace LavinM_WxApp
             }
         }
 
-        /* Given latitude and longitude, retrieve and return the corresponding
-        point object from the NWS web API. */
+        /* Given latitude and longitude, retrieve and return the
+        corresponding point object from the NWS web API.  Some claims in
+        the documentation as of 5/10/2022 that gridpoints have an
+        unintended offset of 1,1; this has not been observed in testing.
+        */
         private async static Task<WxPoint.Rootobject> GetPoint(double lat, double lon)
         {
             string pointIdent = $"points/{lat:0.0000},{lon:0.0000}";
