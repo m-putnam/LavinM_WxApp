@@ -100,6 +100,7 @@ namespace LavinM_WxApp
                 WxPoint.Rootobject StationPt =
                     await GetPoint((double) stObj.geometry.coordinates[1],
                     (double) stObj.geometry.coordinates[0]);
+                this.UseWaitCursor = true;
                 GetForecast(StationPt);
             }
             catch (Exception err)
@@ -201,7 +202,7 @@ namespace LavinM_WxApp
                 /* Finally, the groupbox is added to the table as a new row */
                 tableForecast.Controls.Add(pBox);
             }
-            tableForecast.UseWaitCursor = false;
+            this.UseWaitCursor = false;
         }
 
         /* Get the zone which contains the given point */
@@ -274,7 +275,7 @@ namespace LavinM_WxApp
         specifically denied, or unspecified. */
         private async void ButtonGeolocate_ClickAsync(object sender, EventArgs e)
         {
-            tableForecast.UseWaitCursor = true;
+            this.UseWaitCursor = true;
             var accessStatus = await Geolocator.RequestAccessAsync();
             switch (accessStatus)
             {
